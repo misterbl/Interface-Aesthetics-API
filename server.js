@@ -1,7 +1,7 @@
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const mongoose = require("mongoose");
-
+const cors = require("cors");
 // Import GraphQL components
 const schema = require("./schema");
 const resolvers = require("./resolvers");
@@ -17,8 +17,10 @@ const context = {
 
 // Set up Express server
 const app = express();
+
 app.use(
   "/graphql",
+  cors(),
   graphqlHTTP({
     schema: schema,
     rootValue: resolvers,
