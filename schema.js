@@ -1,19 +1,25 @@
 const { buildSchema } = require("graphql");
 
 module.exports = new buildSchema(`
-  type Book {
+  type User {
     _id: String!
-    title: String!
-    author: String!
+    firstName: String,
+    lastName: String,
+    address: String,
+    profileTitle: String,
+    profileDescription: String,
+    children: String,
+    availabilities: String
   }
 
   type Query {
     hello: String
-    books: [Book]
+    users: [User]
   }
 
   type Mutation {
-    addBook(title: String!, author: String!): Book!
-    removeBook(title: String!): Book!
+    addUser(firstName: String, lastName: String, address: String, profileTitle: String, profileDescription: String, children: String, availabilities: String): User!
+    updateUser(_id: String, firstName: String, lastName: String, address: String, profileTitle: String, profileDescription: String, children: String, availabilities: String): User!
+    removeUser(_id: String!): User!
   }
 `);

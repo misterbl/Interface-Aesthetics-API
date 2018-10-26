@@ -2,16 +2,15 @@ const { MongoClient } = require("mongodb");
 const assert = require("assert");
 const { dbURL, dbName, collectionName } = require("./config.js");
 
-let books = [
-  {
-    title: "David and Goliath",
-    author: "Malcolm Gladwell"
-  },
-  {
-    title: "Steve Jobs",
-    author: "Walter Isaacson"
-  }
-];
+let user = {
+  firstName: "userTestFirstName",
+  lastName: "userTestLastName",
+  address: "userTestAddress",
+  profileTitle: "userTestProfileTitle",
+  profileDescription: "userTestProfileDescription",
+  children: ["userTestChild1", "userTestChild2"],
+  availabilities: ["userTestAvailavility1", "userTestAvailavility2"]
+};
 
 // Connect to the server
 MongoClient.connect(
@@ -23,7 +22,7 @@ MongoClient.connect(
     const db = client.db(dbName);
     const collection = db.collection(collectionName);
 
-    collection.insertMany(books, (err, result) => {
+    collection.insertOne(user, (err, result) => {
       if (err) {
         console.log(err);
       } else {
