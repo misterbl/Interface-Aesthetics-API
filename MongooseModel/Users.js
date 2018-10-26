@@ -7,6 +7,7 @@ ObjectId.prototype.valueOf = function() {
 const userschema = new mongoose.Schema({
   firstName: String,
   lastName: String,
+  email: String,
   address: String,
   profileTitle: String,
   profileDescription: String,

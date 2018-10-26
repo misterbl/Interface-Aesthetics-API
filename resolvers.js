@@ -14,6 +14,7 @@ const resolvers = {
     var newUser = new User({
       firstName: args.firstName,
       lastName: args.lastName,
+      email: args.email,
       address: args.address,
       profileTitle: args.profileTitle,
       profileDescription: args.profileDescription,
