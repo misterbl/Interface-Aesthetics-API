@@ -5,6 +5,7 @@ module.exports = new buildSchema(`
     _id: String!
     firstName: String,
     lastName: String,
+    avatar: String,
     email: String,
     address: String,
     profileTitle: String,
@@ -19,8 +20,9 @@ module.exports = new buildSchema(`
   }
 
   type Mutation {
-    addUser(firstName: String, lastName: String, email: String, address: String, profileTitle: String, profileDescription: String, children: String, availabilities: String): User!
-    updateUser(_id: String, firstName: String, lastName: String, email: String, address: String, profileTitle: String, profileDescription: String, children: String, availabilities: String): User!
+    getUser(email: String): User!
+    addUser(firstName: String, lastName: String, avatar: String, email: String, address: String, profileTitle: String, profileDescription: String, children: String, availabilities: String): User!
+    updateUser(_id: String, firstName: String, lastName: String, avatar: String, email: String, address: String, profileTitle: String, profileDescription: String, children: String, availabilities: String): User!
     removeUser(_id: String!): User!
   }
 `);

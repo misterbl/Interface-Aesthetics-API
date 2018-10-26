@@ -10,10 +10,16 @@ const resolvers = {
 
     return await User.find();
   },
+  getUser: async (args, context) => {
+    const foundUser = await User.findOne({ email: args.email });
+    return foundUser
+  },
   addUser: async (args, context) => {
+    console.log(0, args)
     var newUser = new User({
       firstName: args.firstName,
       lastName: args.lastName,
+      avatar: args.avatar,
       email: args.email,
       address: args.address,
       profileTitle: args.profileTitle,
@@ -21,11 +27,8 @@ const resolvers = {
       children: args.children,
       availabilities: args.availabilities
     });
-
     var err = await newUser.save();
-
     if (err) return err;
-    console.log(newUser);
     return newUser;
   },
   updateUser: async (args, context) => {
