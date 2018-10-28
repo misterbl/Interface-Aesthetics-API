@@ -22,6 +22,8 @@ const resolvers = {
       avatar: args.avatar,
       email: args.email,
       address: args.address,
+      postCode: args.postCode,
+      city: args.city,
       profileTitle: args.profileTitle,
       profileDescription: args.profileDescription,
       children: args.children,

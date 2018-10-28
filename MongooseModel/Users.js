@@ -10,6 +10,8 @@ const userschema = new mongoose.Schema({
   avatar: String,
   email: String,
   address: String,
+  postCode: String,
+  city: String,
   profileTitle: String,
   profileDescription: String,
   children: String,
