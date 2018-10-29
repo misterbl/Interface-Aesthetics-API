@@ -12,13 +12,14 @@ const resolvers = {
   },
   getUser: async (args, context) => {
     const foundUser = await User.findOne({ email: args.email });
-    return foundUser
+    return foundUser;
   },
   addUser: async (args, context) => {
-    console.log(0, args)
+    console.log(0, args);
     var newUser = new User({
       firstName: args.firstName,
       lastName: args.lastName,
+      books: args.books,
       avatar: args.avatar,
       email: args.email,
       address: args.address,

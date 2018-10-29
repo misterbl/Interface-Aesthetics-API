@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const ObjectId = require("mongoose").Types.ObjectId;
 // Mongoose Model
-ObjectId.prototype.valueOf = function () {
+ObjectId.prototype.valueOf = function() {
   return this.toString();
 };
 const userschema = new mongoose.Schema({
@@ -14,7 +14,7 @@ const userschema = new mongoose.Schema({
   city: String,
   profileTitle: String,
   profileDescription: String,
-  children: String,
+  children: Array,
   availabilities: String
 });
 
