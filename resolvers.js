@@ -15,7 +15,7 @@ const resolvers = {
     return foundUser;
   },
   addUser: async (args, context) => {
-    console.log(0, args);
+    console.log("addUser", args);
     var newUser = new User({
       firstName: args.firstName,
       lastName: args.lastName,
@@ -35,11 +35,48 @@ const resolvers = {
     return newUser;
   },
   updateUser: async (args, context) => {
-    await User.update({ _id: args._id }, args).exec();
+    console.log("updateUseArgs", args);
+    if (args.child) {
+      args.child = JSON.parse(args.child);
+      await User.updateOne(
+        { _id: args._id },
+        { $push: { children: args.child } }
+      ).exec();
+    } else {
+      await User.updateOne({ _id: args._id }, args).exec();
+    }
+    const updatedUser = await User.findById(args._id);
+    return updatedUser;
+  },
+  removeChild: async (args, context) => {
+    console.log("removeChild", args);
+    args.child = JSON.parse(args.child);
+    await User.updateOne(
+      { _id: args._id },
+      { $pull: { children: args.child } }
+    ).exec();
     const updatedUser = await User.findById(args._id);
     return updatedUser;
   },
 
+  updateChild: async (args, context) => {
+    console.log("updateChild", args);
+    args.child = JSON.parse(args.child);
+    await User.updateOne(
+      { _id: args._id },
+      { $set: { "children.$[child]": args.child } },
+      { arrayFilters: [{ "child.id": args.child.id }], upsert: true }
+    ).exec();
+    const updatedUser = await User.findById(args._id);
+    return updatedUser;
+  },
+
+  updateAvatar: async (args, context) => {
+    console.log("updateAvatar", args);
+    await User.update({ _id: args._id }, args).exec();
+    const updatedUser = await User.findById(args._id);
+    return updatedUser;
+  },
   removeUser: async (args, context) => {
     var doc = await User.findOneAndRemove({
       _id: args._id
