@@ -7,6 +7,7 @@ const schema = require("./schema");
 const resolvers = require("./resolvers");
 
 // Import configuration and connect to DB
+console.log(dbURL);
 const { dbURL, dbName } = require("./config");
 mongoose.connect(dbURL + "/" + dbName);
 
