@@ -28,6 +28,9 @@ app.use(
     graphiql: true
   })
 );
-
-app.listen(4000);
-console.log("Running a GraphQL API server at localhost:4000/graphql");
+var port = process.env.PORT || 4000;
+app.listen(port, "0.0.0.0", function() {
+  console.log("Listening on Port 3000");
+});
+// app.listen(4000);
+// console.log("Running a GraphQL API server at localhost:4000/graphql");

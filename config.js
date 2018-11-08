@@ -1,5 +1,5 @@
 module.exports = {
-  dbURL: "mongodb://Laurent:Lo15015377@ds255463.mlab.com:55463/heroku_lz1rwr6n",
+  dbURL: "mongodb://localhost:27017",
   dbName: "ProjectDataBase",
   collectionName: "users"
 };

@@ -14,6 +14,10 @@ const resolvers = {
     const foundUser = await User.findOne({ email: args.email });
     return foundUser;
   },
+  getUserById: async (args, context) => {
+    const foundUser = await User.findOne({ _id: args._id });
+    return foundUser;
+  },
   addUser: async (args, context) => {
     console.log("addUser", args);
     var newUser = new User({

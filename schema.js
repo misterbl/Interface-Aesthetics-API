@@ -39,6 +39,7 @@ input ChildInput {
 
   type Mutation {
     getUser(email: String): User
+    getUserById(_id: String): User
     addUser(firstName: String, lastName: String, avatar: String, email: String, address: String, postCode: String, city: String, profileTitle: String, profileDescription: String, children: [ChildInput], availabilities: String): User!
     updateUser(_id: String, firstName: String, lastName: String, avatar: String, email: String, address: String, postCode: String, city: String, profileTitle: String, profileDescription: String, children: String, child: String, availabilities: String): User!
     updateAvatar(_id: String, avatar: String): User!
