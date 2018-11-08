@@ -1,5 +1,6 @@
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 // Import GraphQL components
@@ -7,12 +8,11 @@ const schema = require("./schema");
 const resolvers = require("./resolvers");
 
 // Import configuration and connect to DB
-// console.log(dbURL);
-const { dbURL, dbName } = require("./config");
+// const { dbURL, dbName } = require("./config");
+// mongoose.connect(dbURL + "/" + dbName);
 mongoose.connect(
   "mongodb://heroku_09clv9w4:umbj5436ut2mm3prek019135md@ds155663.mlab.com:55663/heroku_09clv9w4"
 );
-
 // Define "context" just for testing
 const context = {
   greeting: "Hello world!"

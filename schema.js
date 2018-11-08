@@ -24,8 +24,9 @@ input ChildInput {
     avatar: String,
     email: String,
     address: String,
-    postCode: String, 
-    city: String,
+    drivingLicense: Boolean,
+    nonSmoker: Boolean,
+    car: Boolean,
     profileTitle: String,
     profileDescription: String,
     children: [Child]
@@ -40,8 +41,8 @@ input ChildInput {
   type Mutation {
     getUser(email: String): User
     getUserById(_id: String): User
-    addUser(firstName: String, lastName: String, avatar: String, email: String, address: String, postCode: String, city: String, profileTitle: String, profileDescription: String, children: [ChildInput], availabilities: String): User!
-    updateUser(_id: String, firstName: String, lastName: String, avatar: String, email: String, address: String, postCode: String, city: String, profileTitle: String, profileDescription: String, children: String, child: String, availabilities: String): User!
+    addUser(firstName: String, lastName: String, avatar: String, email: String, address: String, drivingLicense: Boolean, car: Boolean, nonSmoker: Boolean, profileTitle: String, profileDescription: String, children: [ChildInput], availabilities: String): User!
+    updateUser(_id: String, firstName: String, lastName: String, avatar: String, email: String, address: String, drivingLicense: Boolean, car: Boolean, nonSmoker: Boolean, profileTitle: String, profileDescription: String, children: String, child: String, availabilities: String,): User!
     updateAvatar(_id: String, avatar: String): User!
     removeChild(_id: String, child: String,): User!
     updateChild(_id: String, child: String,): User!
