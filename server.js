@@ -10,9 +10,9 @@ const resolvers = require("./resolvers");
 // Import configuration and connect to DB
 const { dbURL, dbName } = require("./config");
 mongoose.connect(dbURL + "/" + dbName);
-// mongoose.connect(
-//   "mongodb://heroku_09clv9w4:umbj5436ut2mm3prek019135md@ds155663.mlab.com:55663/heroku_09clv9w4"
-// );
+mongoose.connect(
+  "mongodb://heroku_09clv9w4:umbj5436ut2mm3prek019135md@ds155663.mlab.com:55663/heroku_09clv9w4"
+);
 // Define "context" just for testing
 const context = {
   greeting: "Hello world!"
