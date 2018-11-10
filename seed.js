@@ -2,15 +2,15 @@ const { MongoClient } = require("mongodb");
 const assert = require("assert");
 const { dbURL, dbName, collectionName } = require("./config.js");
 
-let user = {
-  firstName: "userTestFirstName",
-  lastName: "userTestLastName",
-  address: "userTestAddress",
-  profileTitle: "userTestProfileTitle",
-  profileDescription: "userTestProfileDescription",
-  children: ["userTestChild1", "userTestChild2"],
-  availabilities: ["userTestAvailavility1", "userTestAvailavility2"]
-};
+// let user = {
+//   firstName: "userTestFirstName",
+//   lastName: "userTestLastName",
+//   address: "userTestAddress",
+//   profileTitle: "userTestProfileTitle",
+//   profileDescription: "userTestProfileDescription",
+//   children: ["userTestChild1", "userTestChild2"],
+//   availabilities: ["userTestAvailavility1", "userTestAvailavility2"]
+// };
 
 // Connect to the server
 MongoClient.connect(

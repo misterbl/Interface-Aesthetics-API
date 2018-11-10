@@ -12,6 +12,7 @@ const resolvers = {
   },
   getUser: async (args, context) => {
     const foundUser = await User.findOne({ email: args.email });
+    console.log("foundUser", foundUser);
     return foundUser;
   },
   getUserById: async (args, context) => {
@@ -33,27 +34,36 @@ const resolvers = {
       profileTitle: args.profileTitle,
       profileDescription: args.profileDescription,
       children: args.children,
-      availabilities: args.availabilities
+      availability: args.availability
     });
     var err = await newUser.save();
     if (err) return err;
+    console.log("newUser", newUser);
     return newUser;
   },
   updateUser: async (args, context) => {
-    console.log("updateUseArgs", args);
+    console.log("updateUserArgs", args);
     if (args.child) {
       args.child = JSON.parse(args.child);
       await User.updateOne(
         { _id: args._id },
         { $push: { children: args.child } }
       ).exec();
+    } else if (args.availability) {
+      args.availability = JSON.parse(args.availability);
+      await User.updateOne({
+        _id: args._id,
+        availability: args.availability
+      }).exec();
     } else {
       await User.updateOne({ _id: args._id }, args).exec();
     }
     const updatedUser = await User.findById(args._id);
     console.log("updatedUser", updatedUser);
+
     return updatedUser;
   },
+
   removeChild: async (args, context) => {
     console.log("removeChild", args);
     args.child = JSON.parse(args.child);
