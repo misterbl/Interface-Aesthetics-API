@@ -29,7 +29,8 @@ const userschema = new mongoose.Schema({
   profileTitle: String,
   profileDescription: String,
   children: Array,
-  availability: slot
+  availability: slot,
+  unavailability: Array
 });
 
 // Export Mongoose "User" model

@@ -51,6 +51,7 @@ module.exports = new buildSchema(`
     profileDescription: String,
     children: [Child]
     availability: Slot
+    unavailability: [String]
   }
   type Query {
     hello: String
@@ -61,7 +62,7 @@ module.exports = new buildSchema(`
     getUser(email: String): User
     getUserById(_id: String): User
     addUser(firstName: String, lastName: String, avatar: String, email: String, address: String,lat: String, lng: String, drivingLicense: Boolean, car: Boolean, nonSmoker: Boolean, profileTitle: String, profileDescription: String, children: [ChildInput], availability: SlotInput): User!
-    updateUser(_id: String, firstName: String, lastName: String, avatar: String, email: String, address: String, lat: String, lng: String,drivingLicense: Boolean, car: Boolean, nonSmoker: Boolean, profileTitle: String, profileDescription: String, children: String, child: String, availability: String): User!
+    updateUser(_id: String, firstName: String, lastName: String, avatar: String, email: String, address: String, lat: String, lng: String,drivingLicense: Boolean, car: Boolean, nonSmoker: Boolean, profileTitle: String, profileDescription: String, children: String, child: String, availability: String unavailability: [String]): User!
     updateAvatar(_id: String, avatar: String): User!
     removeChild(_id: String, child: String,): User!
     updateChild(_id: String, child: String,): User!

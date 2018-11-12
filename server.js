@@ -55,7 +55,8 @@ app.use(
 app.use(jsonParser);
 // app.use(bodyParser.json({ limit: "500mb" }));
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "https://kidappi.herokuapp.com");
+  // res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type");
 
@@ -63,7 +64,6 @@ app.use((req, res, next) => {
 });
 app.post("/upload", (req, res, next) => {
   User.updateOne({ _id: req.body.id }, { avatar: req.body.file }).exec();
-  // const updatedUser = await User.findById(req._id);
   res.send(200);
   next();
 });
