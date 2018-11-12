@@ -51,10 +51,12 @@ const resolvers = {
       ).exec();
     } else if (args.availability) {
       args.availability = JSON.parse(args.availability);
-      await User.updateOne({
-        _id: args._id,
-        availability: args.availability
-      }).exec();
+      await User.updateOne(
+        {
+          _id: args._id
+        },
+        { availability: args.availability }
+      ).exec();
     } else {
       await User.updateOne({ _id: args._id }, args).exec();
     }
