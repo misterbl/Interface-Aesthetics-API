@@ -11,14 +11,13 @@ const bodyParser = require("body-parser");
 // Import configuration and connect to DB
 const { dbURL, dbName } = require("./config");
 
-// mongoose.connect(
-//   dbURL + "/" + dbName,
-//   { useNewUrlParser: true }
-// );
 mongoose.connect(
-  "mongodb://heroku_09clv9w4:umbj5436ut2mm3prek019135md@ds155663.mlab.com:55663/heroku_09clv9w4",
+  dbURL + "/" + dbName,
   { useNewUrlParser: true }
 );
+// mongoose.connect(
+//   "mongodb://heroku_09clv9w4:umbj5436ut2mm3prek019135md@ds155663.mlab.com:55663/heroku_09clv9w4",  { useNewUrlParser: true }
+// );
 // Define "context" just for testing
 const context = {
   greeting: "Hello world!"
@@ -62,11 +61,11 @@ app.use((req, res, next) => {
 
   next();
 });
-app.post("/upload", cors(), async (req, res) => {
+app.post("/upload", cors(), async (req, res, next) => {
   console.log("req.params", req.body.id);
   User.updateOne({ _id: req.body.id }, { avatar: req.body.file }).exec();
   const updatedUser = await User.findById(req._id);
-  return updatedUser;
+  next();
 });
 
 var port = process.env.PORT || 4000;
