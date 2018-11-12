@@ -41,17 +41,6 @@ var jsonParser = bodyParser.json({
 // app.use(bodyParser.json({ limit: "500mb" }));
 // app.use(bodyParser.urlencoded({ limit: "500mb", extended: true }));
 // app.use(bodyParser.text({ type: "application/graphql" }));
-
-app.use(
-  "/graphql",
-  cors(),
-  graphqlHTTP({
-    schema: schema,
-    rootValue: resolvers,
-    context: context,
-    graphiql: true
-  })
-);
 app.use(jsonParser);
 // app.use(bodyParser.json({ limit: "500mb" }));
 app.use((req, res, next) => {
@@ -67,6 +56,17 @@ app.post("/upload", cors(), async (req, res, next) => {
   // const updatedUser = await User.findById(req._id);
   // next();
 });
+
+app.use(
+  "/graphql",
+  cors(),
+  graphqlHTTP({
+    schema: schema,
+    rootValue: resolvers,
+    context: context,
+    graphiql: true
+  })
+);
 
 var port = process.env.PORT || 4000;
 app.listen(port, "0.0.0.0", function() {
