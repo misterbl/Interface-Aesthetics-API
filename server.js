@@ -61,7 +61,7 @@ app.use((req, res, next) => {
 
   next();
 });
-app.post("/upload", cors(), async (req, res, next) => {
+app.post("/upload", (req, res, next) => {
   User.updateOne({ _id: req.body.id }, { avatar: req.body.file }).exec();
   // const updatedUser = await User.findById(req._id);
   next();
