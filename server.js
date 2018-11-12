@@ -65,7 +65,7 @@ app.use(
     graphiql: true
   })
 );
-app.use(jsonParser);
+// app.use(jsonParser);
 
 var port = process.env.PORT || 4000;
 app.listen(port, "0.0.0.0", function() {
