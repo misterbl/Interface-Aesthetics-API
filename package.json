@@ -13,6 +13,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.4",
+    "express-fileupload": "^1.0.0",
     "express-graphql": "^0.6.12",
     "firebase": "^5.5.7",
     "graphql": "^14.0.2",

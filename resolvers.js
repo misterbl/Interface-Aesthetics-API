@@ -87,12 +87,6 @@ const resolvers = {
     return updatedUser;
   },
 
-  updateAvatar: async (args, context) => {
-    console.log("updateAvatar", args);
-    await User.update({ _id: args._id }, args).exec();
-    const updatedUser = await User.findById(args._id);
-    return updatedUser;
-  },
   removeUser: async (args, context) => {
     var doc = await User.findOneAndRemove({
       _id: args._id
