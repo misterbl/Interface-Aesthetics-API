@@ -25,10 +25,10 @@ const context = {
 
 // Set up Express server
 const app = express();
-var jsonParser = bodyParser.json({
-  limit: 1024 * 1024 * 2000,
-  type: "application/json"
-});
+// var jsonParser = bodyParser.json({
+//   limit: 1024 * 1024 * 2000,
+//   type: "application/json"
+// });
 // var urlencodedParser = bodyParser.urlencoded({
 //   extended: true,
 //   limit: 1024 * 1024 * 20,
@@ -42,13 +42,13 @@ var jsonParser = bodyParser.json({
 // app.use(bodyParser.urlencoded({ limit: "500mb", extended: true }));
 // app.use(bodyParser.text({ type: "application/graphql" }));
 // app.use(bodyParser.json({ limit: "500mb" }));
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+//   res.header("Access-Control-Allow-Headers", "Content-Type");
 
-  next();
-});
+//   next();
+// });
 // app.post("/upload", cors(), async (req, res, next) => {
 //   User.updateOne({ _id: req.body.id }, { avatar: req.body.file }).exec();
 //   // const updatedUser = await User.findById(req._id);
