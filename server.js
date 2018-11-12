@@ -7,7 +7,7 @@ const cors = require("cors");
 // Import GraphQL components
 const schema = require("./schema");
 const resolvers = require("./resolvers");
-import bodyParser from "body-parser";
+const bodyParser = require("body-parser");
 // Import configuration and connect to DB
 const { dbURL, dbName } = require("./config");
 
@@ -29,11 +29,11 @@ var jsonParser = bodyParser.json({
   limit: 1024 * 1024 * 2000,
   type: "application/json"
 });
-var urlencodedParser = bodyParser.urlencoded({
-  extended: true,
-  limit: 1024 * 1024 * 20,
-  type: "application/x-www-form-urlencoding"
-});
+// var urlencodedParser = bodyParser.urlencoded({
+//   extended: true,
+//   limit: 1024 * 1024 * 20,
+//   type: "application/x-www-form-urlencoding"
+// });
 
 // app.use(jsonParser);
 //  app.use(urlencodedParser);
