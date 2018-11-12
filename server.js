@@ -61,10 +61,10 @@ app.use((req, res, next) => {
 
   next();
 });
-app.post("/upload", cors(), async (req, res, next) => {
+app.use("/upload", cors(), async (req, res, next) => {
   console.log("req.params", req.body.id);
   User.updateOne({ _id: req.body.id }, { avatar: req.body.file }).exec();
-  const updatedUser = await User.findById(req._id);
+  // const updatedUser = await User.findById(req._id);
   next();
 });
 
