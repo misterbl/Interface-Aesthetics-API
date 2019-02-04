@@ -1,4 +1,5 @@
 const User = require("./MongooseModel/Users");
+const Course = require("./MongooseModel/Courses");
 
 const resolvers = {
   hello: (args, context) => {
@@ -9,6 +10,12 @@ const resolvers = {
     console.log(context);
 
     return await User.find();
+  },
+  courses: async (args, context) => {
+    // See "greeting: 'Hello world!'" in Terminal
+    console.log(context);
+
+    return await Course.find();
   },
   getUser: async (args, context) => {
     const foundUser = await User.findOne({ email: args.email });
@@ -66,35 +73,18 @@ const resolvers = {
     return updatedUser;
   },
 
-  removeChild: async (args, context) => {
-    console.log("removeChild", args);
-    args.child = JSON.parse(args.child);
-    await User.updateOne(
-      { _id: args._id },
-      { $pull: { children: args.child } }
-    ).exec();
-    const updatedUser = await User.findById(args._id);
-    return updatedUser;
-  },
-
-  updateChild: async (args, context) => {
-    console.log("updateChild", args);
-    args.child = JSON.parse(args.child);
-    await User.updateOne(
-      { _id: args._id },
-      { $set: { "children.$[child]": args.child } },
-      { arrayFilters: [{ "child.id": args.child.id }], upsert: true }
-    ).exec();
-    const updatedUser = await User.findById(args._id);
-    return updatedUser;
-  },
-
   removeUser: async (args, context) => {
     var doc = await User.findOneAndRemove({
       _id: args._id
     });
 
     return doc;
+  },
+
+  getAllCourses: async () => {
+    const foundCourses = await Course.find();
+    console.log("foundCourses", foundCourses);
+    return foundCourses;
   }
 };
 

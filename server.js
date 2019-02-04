@@ -1,7 +1,7 @@
 const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const User = require("./MongooseModel/Users");
-
+const Course = require("./MongooseModel/Courses");
 const mongoose = require("mongoose");
 const cors = require("cors");
 // Import GraphQL components
@@ -11,10 +11,7 @@ const bodyParser = require("body-parser");
 // Import configuration and connect to DB
 const { dbURL, dbName } = require("./config");
 
-mongoose.connect(
-  dbURL + "/" + dbName,
-  { useNewUrlParser: true }
-);
+mongoose.connect(dbURL + "/" + dbName, { useNewUrlParser: true });
 // mongoose.connect(
 //   "mongodb://heroku_09clv9w4:umbj5436ut2mm3prek019135md@ds155663.mlab.com:55663/heroku_09clv9w4",
 //   { useNewUrlParser: true }
@@ -56,7 +53,7 @@ app.use(jsonParser);
 // app.use(bodyParser.json({ limit: "500mb" }));
 app.use((req, res, next) => {
   //  res.header("Access-Control-Allow-Origin", "https://kidappi.herokuapp.com");
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type");
 
@@ -68,9 +65,9 @@ app.post("/upload", (req, res, next) => {
   next();
 });
 
-var port = process.env.PORT || 4000;
+var port = process.env.PORT || 4001;
 app.listen(port, "0.0.0.0", function() {
-  console.log("Listening on Port 4000");
+  console.log("Listening on Port 4001");
 });
 // app.listen(4000);
 // console.log("Running a GraphQL API server at localhost:4000/graphql");

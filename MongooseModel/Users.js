@@ -5,32 +5,12 @@ ObjectId.prototype.valueOf = function() {
   return this.toString();
 };
 
-const slot = new mongoose.Schema({
-  beforeSchool: [String],
-  morning: [String],
-  noon: [String],
-  afternoon: [String],
-  afterSchool: [String],
-  evening: [String],
-  night: [String]
-});
-
 const userschema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   avatar: String,
   email: String,
-  address: String,
-  lat: Number,
-  lng: Number,
-  drivingLicense: Boolean,
-  car: Boolean,
-  nonSmoker: Boolean,
-  profileTitle: String,
-  profileDescription: String,
-  children: Array,
-  availability: slot,
-  unavailability: Array
+  address: String
 });
 
 // Export Mongoose "User" model

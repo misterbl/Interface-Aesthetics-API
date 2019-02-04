@@ -4,10 +4,12 @@ const ObjectId = require("mongoose").Types.ObjectId;
 ObjectId.prototype.valueOf = function() {
   return this.toString();
 };
-const bookSchema = new mongoose.Schema({
+
+const courseschema = new mongoose.Schema({
   title: String,
-  author: String
+  description: String,
+  price: String,
+  image: String
 });
 
-// Export Mongoose "Book" model
-module.exports = mongoose.model("Book", bookSchema);
+module.exports = mongoose.model("Course", courseschema);
