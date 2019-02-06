@@ -20,6 +20,7 @@ module.exports = new buildSchema(`
     hello: String
     users: [User]
     courses: [Course]
+    getCourseById(_id: String): Course
   }
 
   type Mutation {
