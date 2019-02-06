@@ -10,14 +10,18 @@
   "author": "Laurent bouhnik",
   "license": "ISC",
   "dependencies": {
+    "apollo-server": "^2.3.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
     "express-graphql": "^0.6.12",
     "firebase": "^5.5.7",
+    "fs": "^0.0.1-security",
     "graphql": "^14.0.2",
-    "mongoose": "^5.3.4"
+    "mongoose": "^5.3.4",
+    "path": "^0.12.7",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

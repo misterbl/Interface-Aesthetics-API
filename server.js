@@ -2,6 +2,7 @@ const express = require("express");
 const graphqlHTTP = require("express-graphql");
 const User = require("./MongooseModel/Users");
 const Course = require("./MongooseModel/Courses");
+const uuid = require("uuid");
 const mongoose = require("mongoose");
 const cors = require("cors");
 // Import GraphQL components
@@ -10,6 +11,7 @@ const resolvers = require("./resolvers");
 const bodyParser = require("body-parser");
 // Import configuration and connect to DB
 const { dbURL, dbName } = require("./config");
+var path = require("path");
 
 mongoose.connect(dbURL + "/" + dbName, { useNewUrlParser: true });
 // mongoose.connect(
@@ -23,6 +25,8 @@ const context = {
 
 // Set up Express server
 const app = express();
+const fs = require("fs");
+
 var jsonParser = bodyParser.json({
   limit: 1024 * 1024 * 2000,
   type: "application/json"
@@ -63,6 +67,34 @@ app.post("/upload", (req, res, next) => {
   User.updateOne({ _id: req.body.id }, { avatar: req.body.file }).exec();
   res.send(200);
   next();
+});
+
+app.post("/uploadCourseImage", (req, res, next) => {
+  const extension = path.extname(req.body.imageName);
+  console.log(extension);
+  const guid = uuid();
+  fs.writeFile(`/tmp/${guid}${extension}`, req.body.image, function(err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("The file was saved!");
+  });
+
+  Course.updateOne(
+    { _id: req.body._id },
+    { image: `${guid}${extension}` }
+  ).exec();
+  res.send(`${guid}${extension}`);
+  next();
+});
+
+app.get("/getCourseImage", (req, res, next) => {
+  console.log("request", req.query.image);
+
+  fs.readFile(`/tmp/${req.query.image}`, "utf8", (err, data) => {
+    if (err) throw err;
+    res.send(data);
+  });
 });
 
 var port = process.env.PORT || 4001;

@@ -85,7 +85,24 @@ const resolvers = {
     const foundCourses = await Course.find();
     console.log("foundCourses", foundCourses);
     return foundCourses;
+  },
+  addCourse: async (args, context) => {
+    console.log("addCourse", args);
+    var newCourse = new Course({
+      title: args.title,
+      description: args.description,
+      price: args.price
+    });
+    var err = await newCourse.save();
+    if (err) return err;
+    console.log("newCourse", newCourse);
+    return newCourse;
+  },
+  getCourseById: async (args, context) => {
+    const foundCourse = await Course.findOne({ _id: args._id });
+    return foundCourse;
   }
 };
 
 module.exports = resolvers;
+//
